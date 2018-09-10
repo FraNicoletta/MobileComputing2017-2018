@@ -7,18 +7,20 @@ physics.start()
 
 -- background --
 
-local background1 = display.newImage("Immagini/sfondo.png")
-background1:setReferencePoint(display.BottomLeftReferencePoint)
-background1.x = 0
-background1.y = 320
-background1.speed = 2
+local background = display.newImage("Immagini/Sfondo-fisso.png")
+
+local mountain = display.newImage("Immagini/mountain.png")
+mountain:setReferencePoint(display.BottomLeftReferencePoint)
+mountain.x = 0
+mountain.y = 320
+mountain.speed = 2
     
 
-background2 = display.newImage("Immagini/sfondo.png")
-background2:setReferencePoint(display.BottomLeftReferencePoint)
-background2.x = 480
-background2.y = 320
-background2.speed = 2
+local mountain1 = display.newImage("Immagini/mountain.png")
+mountain1:setReferencePoint(display.BottomLeftReferencePoint)
+mountain1.x = 480
+mountain1.y = 320
+mountain1.speed = 2
    
     
 
@@ -31,11 +33,11 @@ function scrollSky(self, event)
     end
 end
 
-background1.enterFrame = scrollSky
-Runtime:addEventListener("enterFrame", background1)
+mountain.enterFrame = scrollSky
+Runtime:addEventListener("enterFrame", mountain)
 
-background2.enterFrame = scrollSky
-Runtime:addEventListener("enterFrame", background2)
+mountain1.enterFrame = scrollSky
+Runtime:addEventListener("enterFrame", mountain1)
 
 -- balloon --
 
