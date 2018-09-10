@@ -43,3 +43,20 @@ local balloon = display.newImage("Immagini/palloncino.png")
 balloon.x = 100
 balloon.y = 100
 physics.addBody(balloon, "dinamic", {density=.1, bounce=0.1, friction=.2, radius=12})
+
+function blowBalloon(self, event)
+    self:applyForce(0, -1.5, self.x, self.y)
+end
+
+function touchScreen(event)
+    if event.phase == "began" then
+        balloon.enterFrame = blowBalloon
+        Runtime:addEventListener("enterFrame", balloon)
+    end
+
+    if event.phase == "ended" then
+        Runtime:removeEventListener("enterFrame", balloon)
+    end
+end
+
+Runtime:addEventListener("touch", touchScreen)
