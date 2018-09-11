@@ -42,12 +42,27 @@ function scene:createScene(event)
     physics.addBody(balloon, "dinamic", {density=.1, bounce=0.1, friction=.2, radius=12})
     screenGroup:insert(balloon)
 
+    pig = display.newImage("Immagini/pig.png")
+    pig.x = 500
+    pig.y = 100
+    pig.speed = math.random(2,6)
+    physics.addBody(pig, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+    screenGroup:insert(pig)
+
 
 end
 
 function scrollSky(self, event)
     if self.x < -477 then
         self.x = 480
+    else
+        self.x = self.x - self.speed
+    end
+end
+
+function movePigs(self, event)
+    if self.x < -50 then
+        self.x = 500
     else
         self.x = self.x - self.speed
     end
@@ -79,6 +94,9 @@ function scene:enterScene(event)
 
     mountain1.enterFrame = scrollSky
     Runtime:addEventListener("enterFrame", mountain1)
+
+    pig.enterFrame = movePigs
+    Runtime:addEventListener("enterFrame", pig)
 end
 
 function scene:exitScene(event)
