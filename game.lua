@@ -16,12 +16,16 @@ function scene:createScene(event)
     local screenGroup = self.view
 
     local background = display.newImage("Immagini/Sfondo-fisso.png")
+    screenGroup:insert(background)
+
 
     mountain = display.newImage("Immagini/mountain.png")
     mountain:setReferencePoint(display.BottomLeftReferencePoint)
     mountain.x = 0
     mountain.y = 320
     mountain.speed = 2
+    screenGroup:insert(mountain)
+
     
 
     mountain1 = display.newImage("Immagini/mountain.png")
@@ -29,11 +33,15 @@ function scene:createScene(event)
     mountain1.x = 480
     mountain1.y = 320
     mountain1.speed = 2
+    screenGroup:insert(mountain1)
+
 
     balloon = display.newImage("Immagini/palloncino.png")
     balloon.x = 100
     balloon.y = 100
     physics.addBody(balloon, "dinamic", {density=.1, bounce=0.1, friction=.2, radius=12})
+    screenGroup:insert(balloon)
+
 
 end
 

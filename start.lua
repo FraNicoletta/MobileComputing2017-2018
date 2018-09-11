@@ -11,11 +11,13 @@ function scene:createScene(event)
 	local screenGroup = self.view
 
 	background = display.newImage("Immagini/start.png")
+    screenGroup:insert(background)
 
     mountain = display.newImage("Immagini/mountain.png")
     mountain:setReferencePoint(display.BottomLeftReferencePoint)
     mountain.x = 0
     mountain.y = 320
+    screenGroup:insert(mountain)
     
 
 end
