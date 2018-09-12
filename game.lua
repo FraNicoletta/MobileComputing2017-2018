@@ -18,6 +18,13 @@ function scene:createScene(event)
     local background = display.newImage("Immagini/Sfondo-fisso.png")
     screenGroup:insert(background)
 
+    local roof = display.newRect(0, 0, display.contentWidth, 0) 
+    physics.addBody(roof, "static", { friction=0.5, bounce=0.3 } )
+    screenGroup:insert(roof)
+
+    local floor = display.newRect(0, 320, display.contentHeight, 10) 
+    physics.addBody(floor, "static", { friction=0.5, bounce=0.3 } )
+    screenGroup:insert(floor)
 
     mountain = display.newImage("Immagini/mountain.png")
     mountain:setReferencePoint(display.BottomLeftReferencePoint)
@@ -26,15 +33,12 @@ function scene:createScene(event)
     mountain.speed = 2
     screenGroup:insert(mountain)
 
-    
-
     mountain1 = display.newImage("Immagini/mountain.png")
     mountain1:setReferencePoint(display.BottomLeftReferencePoint)
     mountain1.x = 480
     mountain1.y = 320
     mountain1.speed = 2
     screenGroup:insert(mountain1)
-
 
     balloon = display.newImage("Immagini/palloncino.png")
     balloon.x = 100
@@ -110,9 +114,22 @@ function touchScreen(event)
     end
 end
 
+function gameOver()
+    storyboard.gotoScene("restart", "fade", 400)
+ end
+
+
+function onCollision(event)
+	if event.phase == "began" then
+        storyboard.gotoScene("restart", "fade", 400)
+	end
+end
 
 
 function scene:enterScene(event)
+
+    storyboard.purgeScene("start")
+	storyboard.purgeScene("restart")
 
     Runtime:addEventListener("touch", touchScreen)
 
@@ -130,10 +147,18 @@ function scene:enterScene(event)
 
     pig2.enterFrame = movePigs
     Runtime:addEventListener("enterFrame", pig2)
+
+    Runtime:addEventListener("collision", onCollision)
 end
 
 function scene:exitScene(event)
-
+    
+	Runtime:removeEventListener("touch", touchScreen)
+    Runtime:removeEventListener("enterFrame", mountain)
+    Runtime:removeEventListener("enterFrame", pig)
+	Runtime:removeEventListener("enterFrame", pig1)
+    Runtime:removeEventListener("enterFrame", pig2)
+    Runtime:removeEventListener("collision", onCollision)
 end
 
 function scene:destroyScene(event)

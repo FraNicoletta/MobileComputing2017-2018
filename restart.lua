@@ -10,7 +10,7 @@ function scene:createScene(event)
 
 	local screenGroup = self.view
 
-	background = display.newImage("Immagni/restart.png")
+	background = display.newImage("Immagini/restart.png")
 	screenGroup:insert(background)
 
     mountain = display.newImage("Immagini/mountain.png")
