@@ -46,10 +46,31 @@ function scene:createScene(event)
     pig.x = 500
     pig.y = 100
     pig.speed = math.random(2,6)
+    pig.initY = pig.y
+    pig.amp = math.random(20,100)
+    pig.angle = math.random(1, 360)
     physics.addBody(pig, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
     screenGroup:insert(pig)
 
+    pig1 = display.newImage("Immagini/pig1.png")
+    pig1.x = 500
+    pig1.y = 100
+    pig1.speed = math.random(2,6)
+    pig1.initY = pig1.y
+    pig1.amp = math.random(20,100)
+    pig1.angle = math.random(1, 360)
+    physics.addBody(pig1, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+    screenGroup:insert(pig1)
 
+    pig2 = display.newImage("Immagini/pig2.png")
+    pig2.x = 500
+    pig2.y = 100
+    pig2.speed = math.random(2,6)
+    pig2.initY = pig1.y
+    pig2.amp = math.random(20,100)
+    pig2.angle = math.random(1, 360)
+    physics.addBody(pig2, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+    screenGroup:insert(pig2)
 end
 
 function scrollSky(self, event)
@@ -63,8 +84,14 @@ end
 function movePigs(self, event)
     if self.x < -50 then
         self.x = 500
+        self.y = math.random(90,220)
+        self.speed = math.random(2,6)
+        self.amp = math.random(20,100)
+        self.angle = math.random(1,360)
     else
         self.x = self.x - self.speed
+        self.angle = self.angle + .1
+        self.y = self.amp*math.sin(self.angle)+self.initY
     end
 end
 
@@ -97,6 +124,12 @@ function scene:enterScene(event)
 
     pig.enterFrame = movePigs
     Runtime:addEventListener("enterFrame", pig)
+
+    pig1.enterFrame = movePigs
+    Runtime:addEventListener("enterFrame", pig1)
+
+    pig2.enterFrame = movePigs
+    Runtime:addEventListener("enterFrame", pig2)
 end
 
 function scene:exitScene(event)
