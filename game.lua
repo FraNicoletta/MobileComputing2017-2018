@@ -47,8 +47,8 @@ function scene:createScene(event)
     screenGroup:insert(balloon)
 
     pig = display.newImage("Immagini/pig.png")
-    pig.x = 500
-    pig.y = 100
+    pig.x = 560
+    pig.y = 150
     pig.speed = math.random(2,6)
     pig.initY = pig.y
     pig.amp = math.random(20,100)
@@ -58,22 +58,22 @@ function scene:createScene(event)
 
     pig1 = display.newImage("Immagini/pig1.png")
     pig1.x = 500
-    pig1.y = 100
+    pig1.y = 150
     pig1.speed = math.random(2,6)
     pig1.initY = pig1.y
     pig1.amp = math.random(20,100)
     pig1.angle = math.random(1, 360)
-    physics.addBody(pig1, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+    physics.addBody(pig1, "static", {density=.1, bounce=0.1, friction=.2, radius=16})
     screenGroup:insert(pig1)
 
     pig2 = display.newImage("Immagini/pig2.png")
-    pig2.x = 500
-    pig2.y = 100
+    pig2.x = 530
+    pig2.y = 150
     pig2.speed = math.random(2,6)
     pig2.initY = pig1.y
     pig2.amp = math.random(20,100)
     pig2.angle = math.random(1, 360)
-    physics.addBody(pig2, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+    physics.addBody(pig2, "static", {density=.1, bounce=0.1, friction=.2, radius=16})
     screenGroup:insert(pig2)
 end
 
